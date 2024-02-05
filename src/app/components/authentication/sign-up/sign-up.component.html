@@ -107,7 +107,7 @@
 
         <mat-checkbox *ngIf="signUpForm.get('role')?.value === 'supplier'" formControlName="offerDelivery" color="primary" class="m-b-1em">Do you offer delivery?</mat-checkbox>
 
-        <div class="flex gap-1em">
+        <div class="flex gap-1em m-b-1em">
             <mat-form-field class="full-width">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput formControlName="password" placeholder="Enter your Password">
@@ -131,7 +131,7 @@
             </mat-form-field>
         </div>
 
-        <div class="flex gap-1em end-center">
+        <div class="flex gap-1em end-center m-b-1em">
             <button mat-raised-button color="warn" (click)="signUpForm.reset()">Cancel</button>
             <button mat-raised-button color="primary" (click)="submit()">Submit</button>
         </div>

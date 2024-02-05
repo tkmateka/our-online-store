@@ -1,1 +1,31 @@
-<p>sign-in works!</p>
+<div class="flex center-center">
+    <form [formGroup]="signInForm">
+        <h2 class="text-center">Sign-in Form</h2>
+
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="signInForm.get('firstName')?.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="signInForm.get('firstName')?.hasError('pattern')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="Enter your Password">
+            <mat-error *ngIf="signInForm.get('password')?.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="signInForm.get('password')?.hasError('minlength')">
+                Password should at least have 4 charectors
+            </mat-error>
+        </mat-form-field>
+
+        <div class="flex gap-1em end-center m-b-1em">
+            <button mat-raised-button color="warn" (click)="signInForm.reset()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        </div>
+    </form>
+</div>

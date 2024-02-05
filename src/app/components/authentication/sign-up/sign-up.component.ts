@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
+  allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
   signUpForm: FormGroup;
   roles: string[] = ['admin', 'supplier', 'customer', 'delivery'];
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar, private router: Router) {
     this.signUpForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -30,15 +33,32 @@ export class SignUpComponent {
     })
   }
 
+  ngOnInit():void {
+  }
+
   submit():void {
+    if(this.signUpForm.invalid) return;
 
     if(this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
       this.signUpForm.get('confirmPassword')?.setErrors({'pattern': true});
       return;
     }
-    
-    if(this.signUpForm.invalid) return;
 
-    console.log(this.signUpForm)
+    let formValue = this.signUpForm.value;
+    const foundUser = this.allUsers.find(user => user.email.toLowerCase() === this.signUpForm.get('email')?.value.toLowerCase());
+
+    if(foundUser) {
+      this.snackBar.open('User already exist, please login.', 'Ok', {
+        duration: 3000
+      })
+    } else {
+      delete formValue.confirmPassword;
+
+      this.allUsers.push(formValue);
+
+      localStorage.setItem('allUsers', JSON.stringify(this.allUsers));
+      this.signUpForm.reset();
+      this.router.navigate(['/sign-in']);
+    }
   }
 }
