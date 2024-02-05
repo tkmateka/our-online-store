@@ -1,0 +1,139 @@
+<div class="flex center-center">
+    <form [formGroup]="signUpForm">
+        <h2 class="text-center">Sign-up Form</h2>
+
+        <h3>Personal Details</h3>
+        <div class="flex gap-1em">
+            <mat-form-field class="full-width">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput formControlName="firstName" placeholder="Enter your First Name">
+                <mat-error *ngIf="signUpForm.get('firstName')?.hasError('required')">
+                    First Name is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('firstName')?.hasError('minlength')">
+                    First Name should at least have 3 charectors
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput formControlName="lastName" placeholder="Enter your Last Name">
+                <mat-error *ngIf="signUpForm.get('lastName')?.hasError('required')">
+                    Last Name is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('lastName')?.hasError('minlength')">
+                    Last Name should at least have 3 charectors
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="signUpForm.get('firstName')?.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('firstName')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex gap-1em">
+            <mat-form-field class="full-width">
+                <mat-label>Cell Number</mat-label>
+                <input type="text" matInput formControlName="cellNumber" placeholder="Enter your Cell Number">
+                <mat-error *ngIf="signUpForm.get('cellNumber')?.hasError('required')">
+                    Cell Number is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('cellNumber')?.hasError('minlength')">
+                    Cell Number should at least have 3 charectors
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Choose a Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option *ngFor="let role of roles" [value]="role">{{role | titlecase}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <h3>Address Details</h3>
+        <div formGroupName="address">
+            <div class="flex gap-1em">
+                <mat-form-field class="full-width">
+                    <mat-label>Street Name</mat-label>
+                    <input type="text" matInput formControlName="streetName" placeholder="Enter your Street Name">
+                    <mat-error *ngIf="signUpForm.get('address.streetName')?.hasError('required')">
+                        Street Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Street Number</mat-label>
+                    <input type="number" matInput formControlName="streetNumber" placeholder="Enter your Street Number">
+                    <mat-error *ngIf="signUpForm.get('address.streetNumber')?.hasError('required')">
+                        Street Number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Suburb</mat-label>
+                    <input type="text" matInput formControlName="suburb" placeholder="Enter your Suburb">
+                    <mat-error *ngIf="signUpForm.get('address.suburb')?.hasError('required')">
+                        Suburb is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="flex gap-1em">
+                <mat-form-field class="full-width">
+                    <mat-label>City</mat-label>
+                    <input type="text" matInput formControlName="city" placeholder="Enter your City">
+                    <mat-error *ngIf="signUpForm.get('address.city')?.hasError('required')">
+                        City is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Code</mat-label>
+                    <input type="number" matInput formControlName="code" placeholder="Enter your Code">
+                    <mat-error *ngIf="signUpForm.get('address.code')?.hasError('required')">
+                        Code is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-checkbox *ngIf="signUpForm.get('role')?.value === 'supplier'" formControlName="offerDelivery" color="primary" class="m-b-1em">Do you offer delivery?</mat-checkbox>
+
+        <div class="flex gap-1em">
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" placeholder="Enter your Password">
+                <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">
+                    Password should at least have 4 charectors
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="full-width">
+                <mat-label>Confrim Password</mat-label>
+                <input type="password" matInput formControlName="confirmPassword" placeholder="Confrim your Password">
+                <mat-error *ngIf="signUpForm.get('confirmPassword')?.hasError('required')">
+                    Confrim Password is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('confirmPassword')?.hasError('pattern')">
+                    Your password doesn't match!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="flex gap-1em end-center">
+            <button mat-raised-button color="warn" (click)="signUpForm.reset()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        </div>
+    </form>
+</div>
