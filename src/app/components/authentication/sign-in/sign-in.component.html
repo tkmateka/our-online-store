@@ -1,14 +1,14 @@
-<div class="flex center-center">
+<div class="flex center-center full-height">
     <form [formGroup]="signInForm">
         <h2 class="text-center">Sign-in Form</h2>
 
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
             <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
-            <mat-error *ngIf="signInForm.get('firstName')?.hasError('required')">
+            <mat-error *ngIf="signInForm.get('email')?.hasError('required')">
                 Email is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="signInForm.get('firstName')?.hasError('pattern')">
+            <mat-error *ngIf="signInForm.get('email')?.hasError('pattern')">
                 Please enter a valid email address
             </mat-error>
         </mat-form-field>

@@ -10,6 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material/material.module';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import { MaterialModule } from './modules/material/material.module';
     SignUpComponent,
     SignInComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ToolbarComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,8 @@ import { MaterialModule } from './modules/material/material.module';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
