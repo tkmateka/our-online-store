@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -6,11 +6,33 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent {
+  isLeftDisabled: boolean = true;
+  isRightDisabled: boolean = false;
+
   @Input() cardType!: string;
 
-  images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  @ViewChild('slider') slider: any;
 
-  constructor() {
-    console.log(this.images)
+  handleOnSlide(type: string) {
+    console.log('type', type);
+    console.log('slider', this.slider);
+
+    if (this.slider.nativeElement.scrollWidth > window.innerWidth) {
+      if (type === 'left') {
+        this.slider.nativeElement.scrollLeft -= 400;
+      } else {
+        this.slider.nativeElement.scrollLeft += 400;
+      }
+
+      let totalUsedWidth = this.slider.nativeElement.scrollLeft + window.innerWidth;
+
+        this.isRightDisabled = (totalUsedWidth >= this.slider.nativeElement.scrollWidth);
+
+
+      this.isLeftDisabled = (this.slider.nativeElement.scrollLeft < 1);
+    } else {
+      this.isLeftDisabled = true;
+      this.isRightDisabled = true;
+    }
   }
 }
