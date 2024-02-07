@@ -12,7 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material/material.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SliderComponent } from './components/shared/slider/slider.component';
+import { RoundCardComponent } from './components/shared/round-card/round-card.component';
+import { SquareCardComponent } from './components/shared/square-card/square-card.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SignInComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    SliderComponent,
+    RoundCardComponent,
+    SquareCardComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

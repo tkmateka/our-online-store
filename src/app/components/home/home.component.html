@@ -1,6 +1,9 @@
 <div class="flex column full-height">
-    <app-toolbar></app-toolbar>
+    <!-- Toolbar -->
+    <app-toolbar class="toolbar"></app-toolbar>
+
     <div class="main-container">
+        <!-- Banner -->
         <div class="banner">
             <div class="banner-content">
                 <h2>Welcome to <br><span class="accent">Our Online Store</span></h2>
@@ -11,5 +14,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- Shop By Category -->
+        <section class="p-1em">
+            <h2 class="text-center">Shop By Category</h2>
+            <app-slider [cardType]="'round'"></app-slider>
+        </section>
+
+        <!-- Featured Products -->
+        <!-- <section>
+            <h2 class="text-center">Featured Products</h2>
+            <app-slider [cardType]="'square'"></app-slider>
+        </section> -->
     </div>
 </div>

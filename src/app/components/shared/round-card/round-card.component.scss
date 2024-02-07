@@ -1,0 +1,31 @@
+mat-card {
+    width: 200px;
+
+    .img-container {
+        height: 200px;
+        position: relative;
+
+        .circle-bg {
+            position: absolute;
+            border: 25px solid lightblue;
+            box-sizing: border-box;
+            border-radius: 50%;
+            height: 90%;
+            width: 90%;
+            z-index: 0;
+        }
+
+        img {
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            z-index: 1;
+        }
+    }
+
+    .content {
+        padding: 10px;
+        margin-bottom: 5px;
+        border-top: 1px solid lightblue;
+    }
+}

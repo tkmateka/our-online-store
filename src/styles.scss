@@ -6,9 +6,6 @@ $accent: #ff4081;
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-
 .full-width {
     width: 100%;
 }
@@ -66,4 +63,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // Margins
 .m-b-1em {
     margin-bottom: 1em;
+}
+
+// Paddings
+.p-1em {
+    padding: 1em;
 }

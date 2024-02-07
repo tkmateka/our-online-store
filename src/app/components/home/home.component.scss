@@ -1,21 +1,29 @@
-.banner {
-    background-image: url('../../../assets/images/wallpaper.jpg');
-    height: calc(80vh - 120px);
-    background-size: cover;
-    position: relative;
-
-    .banner-content {
-        position: absolute;
-        right: 2em;
-        bottom: 2em;
-        width: 40%;
-        color: white;
-        text-align: right;
-        h2 {
-            font-size: xxx-large;
-        }
-        p {
-            font-size: x-large;
+.toolbar {
+    height: 64px;
+}
+.main-container {
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    
+    .banner {
+        background-image: url('../../../assets/images/wallpaper.jpg');
+        height: calc(80vh - 120px);
+        background-size: cover;
+        position: relative;
+    
+        .banner-content {
+            position: absolute;
+            right: 2em;
+            bottom: 2em;
+            width: 40%;
+            color: white;
+            text-align: right;
+            h2 {
+                font-size: xxx-large;
+            }
+            p {
+                font-size: x-large;
+            }
         }
     }
 }
