@@ -1,7 +1,8 @@
 .slider-container {
     position: relative;
 
-    .left, .right {
+    .left,
+    .right {
         position: absolute;
         top: 100px;
         z-index: 2;
@@ -12,6 +13,11 @@
     }
 
     .slider {
-        overflow-x: hidden;
+        overflow-x: scroll;
+    }
+
+    // Added this to hide the scroll bar
+    .slider::-webkit-scrollbar {
+        display: none;
     }
 }

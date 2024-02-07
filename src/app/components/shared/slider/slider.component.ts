@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -14,22 +14,26 @@ export class SliderComponent {
   @ViewChild('slider') slider: any;
 
   handleOnSlide(type: string) {
-    console.log('type', type);
-    console.log('slider', this.slider);
+    let scrollValue;
 
     if (this.slider.nativeElement.scrollWidth > window.innerWidth) {
+      // Removing 80px which is the white space on the left and right of the slider and the scrollbar
       if (type === 'left') {
-        this.slider.nativeElement.scrollLeft -= 400;
+        scrollValue = this.slider.nativeElement.scrollLeft - (window.innerWidth - 80);
       } else {
-        this.slider.nativeElement.scrollLeft += 400;
+        scrollValue = this.slider.nativeElement.scrollLeft + (window.innerWidth - 80);
       }
 
-      let totalUsedWidth = this.slider.nativeElement.scrollLeft + window.innerWidth;
+      // Added this to add an animation while scrolling...
+      this.slider.nativeElement.scrollTo({
+        left: scrollValue,
+        behavior: 'smooth'
+      });
 
-        this.isRightDisabled = (totalUsedWidth >= this.slider.nativeElement.scrollWidth);
+      let totalUsedWidth = scrollValue + window.innerWidth;
 
-
-      this.isLeftDisabled = (this.slider.nativeElement.scrollLeft < 1);
+      this.isRightDisabled = (totalUsedWidth >= this.slider.nativeElement.scrollWidth);
+      this.isLeftDisabled = (scrollValue < 1);
     } else {
       this.isLeftDisabled = true;
       this.isRightDisabled = true;
