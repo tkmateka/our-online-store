@@ -13,7 +13,6 @@ import { MaterialModule } from './modules/material/material.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { SliderComponent } from './components/slider/slider.component';
     SignInComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ToolbarComponent,
-    SliderComponent
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
