@@ -21,6 +21,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .accent {
     color: $accent;
 }
+.primary-bg {
+    background-color: $primary;
+}
+.accent-bg {
+    background-color: $accent;
+}
 
 // Flex 
 .flex {
@@ -50,6 +56,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-items: center;
 }
 
+.spacearound-center {
+    justify-content: space-around;
+    align-items: center;
+}
+
 .gap-1em {
     gap: 1em;
 }
@@ -61,11 +72,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 // Margins
+.no-margin {
+    margin: 0;
+}
 .m-b-1em {
     margin-bottom: 1em;
+}
+
+.m-b-2em {
+    margin-bottom: 2em;
 }
 
 // Paddings
 .p-1em {
     padding: 1em;
+}
+
+
+// Common
+.line-through {
+    text-decoration: line-through;
 }

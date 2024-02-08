@@ -1,11 +1,12 @@
 .slider-container {
     position: relative;
+    padding: 0 1em;
 
     .left,
     .right {
         position: absolute;
         top: 100px;
-        z-index: 2;
+        z-index: 3;
     }
 
     .right {

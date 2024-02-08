@@ -6,11 +6,11 @@
         <mat-icon>chevron_right</mat-icon>
     </button>
     <!-- Round Cards -->
-    <div class="slider flex gap-1em" #slider *ngIf="cardType === 'round'">
+    <div class="slider flex gap-1em m-b-2em" #slider *ngIf="cardType === 'round'">
         <app-round-card *ngFor="let obj of data" [data]="obj"></app-round-card>
     </div>
     <!-- Square Cards -->
-    <div class="slider flex" #slider *ngIf="cardType === 'square'">
-        <app-square-card></app-square-card>
+    <div class="slider flex gap-1em m-b-2em" #slider *ngIf="cardType === 'square'">
+        <app-square-card *ngFor="let obj of data"></app-square-card>
     </div>
 </div>

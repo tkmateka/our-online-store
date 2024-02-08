@@ -6,9 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./square-card.component.scss']
 })
 export class SquareCardComponent {
-  @Input() data:any;
+  // @Input() data:any;
 
   constructor() {
-    console.log(this.data)
   }
 }
