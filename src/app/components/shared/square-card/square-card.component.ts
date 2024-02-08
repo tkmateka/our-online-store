@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-square-card',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./square-card.component.scss']
 })
 export class SquareCardComponent {
+  @Input() data:any;
 
+  constructor() {
+    console.log(this.data)
+  }
 }

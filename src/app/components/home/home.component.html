@@ -17,14 +17,14 @@
 
         <!-- Shop By Category -->
         <section class="p-1em">
-            <h2 class="text-center">Shop By Category</h2>
-            <app-slider [cardType]="'round'"></app-slider>
+            <h2 class="text-center m-b-1em">Shop By Category</h2>
+            <app-slider [cardType]="'round'" [data]="categories"></app-slider>
         </section>
 
         <!-- Featured Products -->
-        <!-- <section>
+        <section>
             <h2 class="text-center">Featured Products</h2>
-            <app-slider [cardType]="'square'"></app-slider>
-        </section> -->
+            <app-slider [cardType]="'square'" [data]="featuredProducts"></app-slider>
+        </section>
     </div>
 </div>

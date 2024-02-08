@@ -6,8 +6,8 @@
         <mat-icon>chevron_right</mat-icon>
     </button>
     <!-- Round Cards -->
-    <div class="slider flex" #slider *ngIf="cardType === 'round'">
-        <app-round-card *ngFor="let card of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]" [data]="card"></app-round-card>
+    <div class="slider flex gap-1em" #slider *ngIf="cardType === 'round'">
+        <app-round-card *ngFor="let obj of data" [data]="obj"></app-round-card>
     </div>
     <!-- Square Cards -->
     <div class="slider flex" #slider *ngIf="cardType === 'square'">
