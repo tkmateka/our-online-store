@@ -2,6 +2,8 @@
 
 $primary: #3f51b5;
 $accent: #ff4081;
+$green: #00a165;
+$white: #ffffff;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -21,11 +23,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .accent {
     color: $accent;
 }
+.green {
+    color: $green;
+}
+.white {
+    color: $white !important;
+}
+
+// Background
 .primary-bg {
     background-color: $primary;
 }
 .accent-bg {
     background-color: $accent;
+}
+.green-bg {
+    background-color: $green !important;
 }
 
 // Flex 
@@ -63,6 +76,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .gap-1em {
     gap: 1em;
+}
+
+.gap-2em {
+    gap: 2em;
 }
 
 

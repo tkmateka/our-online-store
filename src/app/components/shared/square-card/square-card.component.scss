@@ -41,14 +41,29 @@
             left: 0;
             right: 0;
             z-index: 2;
-            background-color: #808080e0;
+            background-color: #ffffffde;
             border: 1px solid #808080;
             border-radius: 7px;
-            color: white;
         }
     }
 }
 
+.btn-radius {
+    border-radius: 20px;
+}
+
 .width-80 {
     width: 80%;
+}
+
+.footer-item {
+    height: 50px;
+    padding: 0 1em;
+    &:hover {
+        color: lightgray;
+    }
+}
+
+.border-right {
+    border-right: 1px solid lightgray;
 }
