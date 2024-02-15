@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,7 @@ export class SignInComponent {
   allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
   signInForm: FormGroup;
 
-  constructor(private snackBar: MatSnackBar, private router: Router) {
+  constructor(private snackBar: MatSnackBar, private router: Router, private api: ApiService) {
     this.signInForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
@@ -26,23 +27,17 @@ export class SignInComponent {
     if (this.signInForm.invalid) return;
 
     let formValue = this.signInForm.value;
-    const foundUser = this.allUsers.find(user => user.email.toLowerCase() === this.signInForm.get('email')?.value.toLowerCase());
 
-    if (foundUser) {
-      if (foundUser.password === formValue.password) {
-        sessionStorage.setItem('currentUser', JSON.stringify(foundUser));
-        this.signInForm.reset();
-        this.router.navigate(['/home']);
-      } else {
-        this.snackBar.open('Sorry, password is incorrect', 'Ok', {
-          duration: 3000
-        })
-      }
-    } else {
-      this.snackBar.open('User not found.', 'Ok', {
-        duration: 3000
+    this.api.genericPost('/sign-in', formValue)
+      .subscribe({
+        next: (res: any) => {
+          sessionStorage.setItem('currentUser', JSON.stringify(res));
+          this.signInForm.reset();
+          this.router.navigate(['/home']);
+        },
+        error: (err: any) => this.snackBar.open(err.error, 'Ok', { duration: 3000 }),
+        complete: () => { }
       })
-    }
   }
 }
 
