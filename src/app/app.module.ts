@@ -15,7 +15,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SliderComponent } from './components/shared/slider/slider.component';
 import { RoundCardComponent } from './components/shared/round-card/round-card.component';
 import { SquareCardComponent } from './components/shared/square-card/square-card.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { SquareCardComponent } from './components/shared/square-card/square-card
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

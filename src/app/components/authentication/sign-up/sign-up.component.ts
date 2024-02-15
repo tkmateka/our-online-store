@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   roles: string[] = ['admin', 'supplier', 'customer', 'delivery'];
 
-  constructor(private snackBar: MatSnackBar, private router: Router) {
+  constructor(private snackBar: MatSnackBar, private router: Router, private api: ApiService) {
     this.signUpForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -33,32 +34,29 @@ export class SignUpComponent implements OnInit {
     })
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
   }
 
-  submit():void {
-    if(this.signUpForm.invalid) return;
+  submit(): void {
+    if (this.signUpForm.invalid) return;
 
-    if(this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
-      this.signUpForm.get('confirmPassword')?.setErrors({'pattern': true});
+    if (this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
+      this.signUpForm.get('confirmPassword')?.setErrors({ 'pattern': true });
       return;
     }
 
     let formValue = this.signUpForm.value;
-    const foundUser = this.allUsers.find(user => user.email.toLowerCase() === this.signUpForm.get('email')?.value.toLowerCase());
+    delete formValue.confirmPassword; // Remove password from Form Value
 
-    if(foundUser) {
-      this.snackBar.open('User already exist, please login.', 'Ok', {
-        duration: 3000
-      })
-    } else {
-      delete formValue.confirmPassword;
-
-      this.allUsers.push(formValue);
-
-      localStorage.setItem('allUsers', JSON.stringify(this.allUsers));
-      this.signUpForm.reset();
-      this.router.navigate(['/sign-in']);
-    }
+    this.api.genericPost('/add-user', formValue)
+      .subscribe({
+        next: (res: any) => {
+          console.log('Response', res);
+          this.signUpForm.reset();
+          this.router.navigate(['/sign-in']);
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
   }
 }
