@@ -11,7 +11,7 @@ export class AuthPopupComponent {
 
   constructor(public dialogRef: MatDialogRef<AuthPopupComponent>) {}
 
-  handleSignIn(data: any):void {
+  handleSubmit(data: any):void {
     if(data === 'close') {
       this.dialogRef.close()
     } else {

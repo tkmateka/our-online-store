@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,6 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+  @Output() submitted = new EventEmitter<string>();  
+  
   allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
   signUpForm: FormGroup;
   roles: string[] = ['admin', 'supplier', 'customer', 'delivery'];
@@ -51,12 +53,30 @@ export class SignUpComponent implements OnInit {
     this.api.genericPost('/add-user', formValue)
       .subscribe({
         next: (res: any) => {
-          console.log('Response', res);
           this.signUpForm.reset();
-          this.router.navigate(['/sign-in']);
+
+          if (this.router.url.includes('sign-up')) {
+            this.router.navigate(['/sign-in']);
+          } else {
+            this.submitted.emit('change');
+          }
         },
         error: (err: any) => console.log('Error', err),
         complete: () => { }
       });
+  }
+
+  closeIfPopup(): void {
+    if (!this.router.url.includes('sign-up')) {
+      this.submitted.emit('close');
+    }
+  }
+
+  goToLogin(): void {
+    if (!this.router.url.includes('sign-in')) {
+      this.submitted.emit('change');
+    } else {
+      this.router.navigate(['/sign-up']);
+    }
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthPopupComponent } from '../shared/auth-popup/auth-popup.component';
 
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
     }
   ]
 
-  constructor(private shared: SharedService, private dialog: MatDialog) { }
+  constructor(private shared: SharedService, private dialog: MatDialog, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -45,14 +47,24 @@ export class HomeComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (this.shared.isLoggedIn()) {
-              console.log('SIGNED_IN: ', JSON.parse(sessionStorage.getItem('currentUser') || '{}'))
+              this.checkIfLoggedIn();
             }
           },
           error: (err) => console.log(err),
           complete: () => { },
         })
     } else {
-      console.log('SIGNED_IN: ', JSON.parse(sessionStorage.getItem('currentUser') || '{}'))
+      this.checkIfLoggedIn();
+    }
+  }
+
+  checkIfLoggedIn() {
+    const currentUser = JSON.parse(this.shared.isLoggedIn() || '{}')
+
+    if (currentUser.role.toLowerCase() === 'supplier') {
+      this.router.navigate(['/supplier'])
+    } else {
+      this.snackBar.open('Only suppliers allowed', 'Ok', {duration: 5000})
     }
   }
 }
