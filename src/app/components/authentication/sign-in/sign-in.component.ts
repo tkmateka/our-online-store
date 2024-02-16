@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,6 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  @Output() submitted = new EventEmitter<string>();  
+
   allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
   signInForm: FormGroup;
 
@@ -33,11 +35,30 @@ export class SignInComponent {
         next: (res: any) => {
           sessionStorage.setItem('currentUser', JSON.stringify(res));
           this.signInForm.reset();
-          this.router.navigate(['/home']);
+
+          if(this.router.url.includes('sign-in')) {
+            this.router.navigate(['/home']);
+          } else {
+            this.submitted.emit('close');
+          }          
         },
         error: (err: any) => this.snackBar.open(err.error, 'Ok', { duration: 3000 }),
         complete: () => { }
       })
+  }
+
+  closeIfPopup():void {
+    if(!this.router.url.includes('sign-in')) {
+      this.submitted.emit('close');
+    } 
+  }
+
+  goToRegister():void {
+    if(!this.router.url.includes('sign-in')) {
+      this.submitted.emit('change');
+    } else {
+      this.router.navigate(['/sign-up']);
+    } 
   }
 }
 

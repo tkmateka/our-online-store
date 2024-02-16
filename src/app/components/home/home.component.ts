@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SharedService } from 'src/app/services/shared.service';
+import { AuthPopupComponent } from '../shared/auth-popup/auth-popup.component';
 
 @Component({
   selector: 'app-home',
@@ -29,14 +31,28 @@ export class HomeComponent implements OnInit {
     }
   ]
 
-  constructor(private api: ApiService) { }
+  constructor(private shared: SharedService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.api.genericGet('/get-user/tt@tt.tt')
-      .subscribe({
-        next: (res: any) => console.log('Response', res),
-        error: (err: any) => console.log('Error', err),
-        complete: () => { }
-      });
+
+  }
+
+  sellProduct(): void {
+    if (!this.shared.isLoggedIn()) { // null
+      const dialogRef = this.dialog.open(AuthPopupComponent);
+
+      dialogRef.afterClosed()
+        .subscribe({
+          next: (res) => {
+            if (this.shared.isLoggedIn()) {
+              console.log('SIGNED_IN: ', JSON.parse(sessionStorage.getItem('currentUser') || '{}'))
+            }
+          },
+          error: (err) => console.log(err),
+          complete: () => { },
+        })
+    } else {
+      console.log('SIGNED_IN: ', JSON.parse(sessionStorage.getItem('currentUser') || '{}'))
+    }
   }
 }

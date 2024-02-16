@@ -1,0 +1,4 @@
+<div class="popup-container">
+    <app-sign-in *ngIf="isSignIn" (submitted)="handleSignIn($event)"></app-sign-in>
+    <app-sign-up *ngIf="!isSignIn"></app-sign-up>
+</div>

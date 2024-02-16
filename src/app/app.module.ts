@@ -16,6 +16,7 @@ import { SliderComponent } from './components/shared/slider/slider.component';
 import { RoundCardComponent } from './components/shared/round-card/round-card.component';
 import { SquareCardComponent } from './components/shared/square-card/square-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthPopupComponent } from './components/shared/auth-popup/auth-popup.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     ToolbarComponent,
     SliderComponent,
     RoundCardComponent,
-    SquareCardComponent
+    SquareCardComponent,
+    AuthPopupComponent
   ],
   imports: [
     BrowserModule,

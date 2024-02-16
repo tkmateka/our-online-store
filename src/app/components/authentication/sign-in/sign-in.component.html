@@ -23,9 +23,12 @@
             </mat-error>
         </mat-form-field>
 
-        <div class="flex gap-1em end-center m-b-1em">
-            <button mat-raised-button color="warn" (click)="signInForm.reset()">Cancel</button>
-            <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        <div class="flex spacebetween-center">
+            <p>Don't have an Account? <strong (click)="goToRegister()">Register</strong></p>
+            <div class="flex gap-1em m-b-1em">
+                <button mat-raised-button color="warn" (click)="signInForm.reset(); closeIfPopup()">Cancel</button>
+                <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+            </div>
         </div>
     </form>
 </div>
