@@ -1,0 +1,18 @@
+<app-supplier-toolbar [screenWidth]="screenWidth" [sidenav]="sidenav"></app-supplier-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav [mode]="screenWidth <= 600 ? 'over' : 'side'" opened #sidenav>
+        <div class="flex column full-height full-width gap-05em">
+            <!-- Menu Items -->
+            <div class="menu-item flex gap-1em start-center full-width" *ngFor="let item of menuItems">
+                <mat-icon>{{item.icon}}</mat-icon>
+                <p class="no-margin">{{item.label}}</p>
+            </div>
+        </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

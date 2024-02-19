@@ -59,6 +59,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-items: center;
 }
 
+.start-center {
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .end-center {
     justify-content: flex-end;
     align-items: center;
@@ -72,6 +77,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .spacearound-center {
     justify-content: space-around;
     align-items: center;
+}
+
+.gap-05em {
+    gap: .5em;
 }
 
 .gap-1em {

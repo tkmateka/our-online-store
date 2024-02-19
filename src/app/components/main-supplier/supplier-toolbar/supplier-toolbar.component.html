@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button matTooltip="Main Menu" (click)="sidenav.toggle()" *ngIf="screenWidth <= 600">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Our Online Store</span>
+    <span class="flex-1"></span>
+    <button mat-icon-button matTooltip="Wishlist">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Shopping Cart">
+        <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>

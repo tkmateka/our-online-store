@@ -4,8 +4,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomeComponent } from './components/home/home.component';
 import { SignInComponent } from './components/authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
-import { SupplierComponent } from './components/supplier/supplier.component';
-import { SupplierDashboardComponent } from './components/supplier-dashboard/supplier-dashboard.component';
+import { SupplierComponent } from './components/main-supplier/supplier/supplier.component';
+import { SupplierDashboardComponent } from './components/main-supplier/supplier-dashboard/supplier-dashboard.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

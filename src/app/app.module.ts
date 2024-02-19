@@ -17,8 +17,9 @@ import { RoundCardComponent } from './components/shared/round-card/round-card.co
 import { SquareCardComponent } from './components/shared/square-card/square-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthPopupComponent } from './components/shared/auth-popup/auth-popup.component';
-import { SupplierComponent } from './components/supplier/supplier.component';
-import { SupplierDashboardComponent } from './components/supplier-dashboard/supplier-dashboard.component';
+import { SupplierComponent } from './components/main-supplier/supplier/supplier.component';
+import { SupplierDashboardComponent } from './components/main-supplier/supplier-dashboard/supplier-dashboard.component';
+import { SupplierToolbarComponent } from './components/main-supplier/supplier-toolbar/supplier-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SupplierDashboardComponent } from './components/supplier-dashboard/supp
     SquareCardComponent,
     AuthPopupComponent,
     SupplierComponent,
-    SupplierDashboardComponent
+    SupplierDashboardComponent,
+    SupplierToolbarComponent
   ],
   imports: [
     BrowserModule,
