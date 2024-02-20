@@ -1,1 +1,27 @@
-<p>supplier-dashboard works!</p>
+<div class="main-container flex column gap-1em">
+    <div>
+        <h2 class="no-margin">Dashboard Overview</h2>
+        <small>Welcome back, <b>Tukiso</b></small>
+    </div>
+    
+    <div class="flex gap-1em">
+        <mat-card class="mini-card flex-1 flex column gap-05em"
+        *ngFor="let card of miniCards">
+            <small>{{card.label}}</small>
+            <div class="flex spacebetween-center stats">
+                <p class="no-margin">{{card.value}}</p>
+                <mat-icon>{{card.icon}}</mat-icon>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="flex gap-1em">
+        <mat-card class="flex-1">
+            <app-pie></app-pie>
+        </mat-card>
+
+        <mat-card class="flex-1">
+            <app-bar></app-bar>
+        </mat-card>
+    </div>
+</div>

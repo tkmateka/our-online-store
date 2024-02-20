@@ -21,6 +21,10 @@ import { SupplierComponent } from './components/main-supplier/supplier/supplier.
 import { SupplierDashboardComponent } from './components/main-supplier/supplier-dashboard/supplier-dashboard.component';
 import { SupplierToolbarComponent } from './components/main-supplier/supplier-toolbar/supplier-toolbar.component';
 
+import { NgChartsModule } from 'ng2-charts';
+import { PieComponent } from './components/charts/pie/pie.component';
+import { BarComponent } from './components/charts/bar/bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,9 @@ import { SupplierToolbarComponent } from './components/main-supplier/supplier-to
     AuthPopupComponent,
     SupplierComponent,
     SupplierDashboardComponent,
-    SupplierToolbarComponent
+    SupplierToolbarComponent,
+    PieComponent,
+    BarComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,8 @@ import { SupplierToolbarComponent } from './components/main-supplier/supplier-to
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

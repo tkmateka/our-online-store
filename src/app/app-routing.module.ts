@@ -8,14 +8,16 @@ import { SupplierComponent } from './components/main-supplier/supplier/supplier.
 import { SupplierDashboardComponent } from './components/main-supplier/supplier-dashboard/supplier-dashboard.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path:'home', component: HomeComponent},
-  {path:'sign-in', component: SignInComponent},
-  {path:'sign-up', component: SignUpComponent},
-  {path:'supplier', component: SupplierComponent, children: [
-    {path:'dashboard', component: SupplierDashboardComponent}
-  ]},
-  {path: '**', component: PageNotFoundComponent}
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  {
+    path: 'supplier', component: SupplierComponent, children: [
+      { path: 'dashboard', component: SupplierDashboardComponent }
+    ]
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

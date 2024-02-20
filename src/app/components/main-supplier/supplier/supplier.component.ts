@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -6,8 +6,8 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './supplier.component.html',
   styleUrls: ['./supplier.component.scss']
 })
-export class SupplierComponent {
-  screenWidth: number;
+export class SupplierComponent implements AfterViewInit {
+  screenWidth!: number;
   menuItems: any[] = [
     {label: 'Dashboard', icon: 'dashboard', route: 'supplier/dashboard'},
     {label: 'Products', icon: 'shopping_bag', route: 'supplier/products'},
@@ -19,13 +19,14 @@ export class SupplierComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    
-
     this.handleScreenWidthChanges()
   }
 
-  constructor() {
-    this.screenWidth = window.innerWidth;
+  constructor(private cd: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.handleScreenWidthChanges();
+    this.cd.detectChanges();
   }
 
   handleScreenWidthChanges():void {
