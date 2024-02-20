@@ -5,8 +5,19 @@ $accent: #ff4081;
 $green: #00a165;
 $white: #ffffff;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.half-width {
+    width: 49%;
+}
 
 .full-width {
     width: 100%;
@@ -20,12 +31,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .primary {
     color: $primary;
 }
+
 .accent {
     color: $accent;
 }
+
 .green {
     color: $green;
 }
+
 .white {
     color: $white !important;
 }
@@ -34,9 +48,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .primary-bg {
     background-color: $primary;
 }
+
 .accent-bg {
     background-color: $accent;
 }
+
 .green-bg {
     background-color: $green !important;
 }
@@ -48,6 +64,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .flex-1 {
     flex: 1
+}
+
+.wrap {
+    flex-wrap: wrap;
 }
 
 .column {
@@ -101,6 +121,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .no-margin {
     margin: 0;
 }
+
+.m-t-b-1em {
+    margin: 1em 0;
+}
+
 .m-b-1em {
     margin-bottom: 1em;
 }

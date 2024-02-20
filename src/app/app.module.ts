@@ -24,6 +24,7 @@ import { SupplierToolbarComponent } from './components/main-supplier/supplier-to
 import { NgChartsModule } from 'ng2-charts';
 import { PieComponent } from './components/charts/pie/pie.component';
 import { BarComponent } from './components/charts/bar/bar.component';
+import { AddProductComponent } from './components/shared/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { BarComponent } from './components/charts/bar/bar.component';
     SupplierDashboardComponent,
     SupplierToolbarComponent,
     PieComponent,
-    BarComponent
+    BarComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

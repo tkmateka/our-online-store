@@ -1,5 +1,7 @@
 import { Component, HostListener, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AddProductComponent } from '../../shared/add-product/add-product.component';
 
 @Component({
   selector: 'app-supplier',
@@ -22,7 +24,7 @@ export class SupplierComponent implements AfterViewInit {
     this.handleScreenWidthChanges()
   }
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this.handleScreenWidthChanges();
@@ -37,5 +39,17 @@ export class SupplierComponent implements AfterViewInit {
     } else {
       this.sidenav.open();
     }
+  }
+
+  addProduct(): void {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      panelClass: 'full-width'
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err),
+      complete: () => {}
+    })
   }
 }

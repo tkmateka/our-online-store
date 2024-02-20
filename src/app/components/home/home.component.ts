@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     const currentUser = JSON.parse(this.shared.isLoggedIn() || '{}')
 
     if (currentUser.role.toLowerCase() === 'supplier') {
-      this.router.navigate(['/supplier'])
+      this.router.navigate(['/supplier/dashboard'])
     } else {
       this.snackBar.open('Only suppliers allowed', 'Ok', {duration: 5000})
     }

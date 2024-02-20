@@ -1,0 +1,62 @@
+<div class="flex center-center full-height add-product-container">
+    <form [formGroup]="addProductForm" class="full-width">
+        <h2 class="text-center">Add a New Product</h2>
+        <div class="flex spacebetween-center wrap">
+            <mat-form-field class="half-width">
+                <mat-label>Product Name</mat-label>
+                <input type="text" matInput formControlName="productName" placeholder="Enter the Product Name">
+                <mat-error *ngIf="addProductForm.get('productName')?.hasError('required')">
+                    Product Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="half-width">
+                <mat-label>Product Code</mat-label>
+                <input type="text" matInput formControlName="productCode" placeholder="Enter the Product Code">
+            </mat-form-field>
+
+            <mat-form-field class="half-width">
+                <mat-label>Price</mat-label>
+                <input type="number" matInput formControlName="price" placeholder="Enter the Price">
+                <mat-error *ngIf="addProductForm.get('price')?.hasError('required')">
+                    Price is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-radio-group class="half-width" formControlName="isOnSpecial">
+                <mat-label>Is this product on special?</mat-label> <br>
+                <mat-radio-button [value]="true">Yes</mat-radio-button>
+                <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field class="half-width" *ngIf="addProductForm.get('isOnSpecial')?.value">
+                <mat-label>Special Price</mat-label>
+                <input type="number" matInput formControlName="specialPrice" placeholder="Enter the Special Price">
+                <mat-error *ngIf="addProductForm.get('specialPrice')?.hasError('required')">
+                    Special Price is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-radio-group class="half-width" formControlName="offerDelivery">
+                <mat-label>Do you offer delivery?</mat-label> <br>
+                <mat-radio-button [value]="true">Yes</mat-radio-button>
+                <mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Enter delivery date range</mat-label>
+                <mat-date-range-input formGroupName="deliveryETA" [rangePicker]="picker">
+                    <input matStartDate formControlName="start" placeholder="Between">
+                    <input matEndDate formControlName="end" placeholder="And">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+
+        <div class="flex gap-1em m-t-b-1em">
+            <button mat-raised-button color="warn" (click)="addProductForm.reset()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        </div>
+    </form>
+</div>
