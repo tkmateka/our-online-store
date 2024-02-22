@@ -12,7 +12,16 @@ export class AddProductComponent {
   addProductForm: FormGroup;
   reviewControl: FormControl;
   featuresControl: FormControl;
+  trueOrFalseOptions:any[] = [
+    {label: 'Yes', value: true},
+    {label: 'No', value: false},
+  ]
   productCode: string = `PROD-${new Date().getTime()}`;
+  weekendFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  };
 
   constructor(private shared: SharedService) {
     const user = this.shared.isLoggedIn();

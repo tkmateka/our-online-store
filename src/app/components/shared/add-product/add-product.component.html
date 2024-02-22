@@ -23,11 +23,12 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-radio-group class="half-width" formControlName="isOnSpecial">
-                <mat-label>Is this product on special?</mat-label> <br>
-                <mat-radio-button [value]="true">Yes</mat-radio-button>
-                <mat-radio-button [value]="false">No</mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field class="half-width">
+                <mat-label>Is this product on special?</mat-label>
+                <mat-select formControlName="isOnSpecial">
+                    <mat-option *ngFor="let option of trueOrFalseOptions" [value]="option.value">{{option.label | titlecase}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <mat-form-field class="half-width" *ngIf="addProductForm.get('isOnSpecial')?.value">
                 <mat-label>Special Price</mat-label>
@@ -37,20 +38,28 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-radio-group class="half-width" formControlName="offerDelivery">
-                <mat-label>Do you offer delivery?</mat-label> <br>
-                <mat-radio-button [value]="true">Yes</mat-radio-button>
-                <mat-radio-button [value]="false">No</mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field class="half-width">
+                <mat-label>Do you offer delivery?</mat-label>
+                <mat-select formControlName="offerDelivery">
+                    <mat-option *ngFor="let option of trueOrFalseOptions" [value]="option.value">{{option.label | titlecase}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <mat-form-field class="half-width" appearance="fill">
                 <mat-label>Enter delivery date range</mat-label>
-                <mat-date-range-input formGroupName="deliveryETA" [rangePicker]="picker">
-                    <input matStartDate formControlName="start" placeholder="Between">
-                    <input matEndDate formControlName="end" placeholder="And">
+                <mat-date-range-input formGroupName="deliveryETA" [rangePicker]="picker" (click)="picker.open()" [dateFilter]="weekendFilter">
+                    <input matStartDate formControlName="start" placeholder="Between" readonly>
+                    <input matEndDate formControlName="end" placeholder="And" readonly>
                 </mat-date-range-input>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <mat-form-field class="half-width">
+                <mat-label>Do you deliver on Weekends?</mat-label>
+                <mat-select formControlName="deliverOnWeekends">
+                    <mat-option *ngFor="let option of trueOrFalseOptions" [value]="option.value">{{option.label | titlecase}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
 
